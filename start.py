@@ -75,6 +75,10 @@ async def _(e):
 async def _(e):
     await encc(e)
 
+@cbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"removee(.*)")))
+async def _(e):
+    await removee(e)
+
 
 @cbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"sencc(.*)")))
 async def _(e):
