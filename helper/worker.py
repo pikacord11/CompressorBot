@@ -79,7 +79,7 @@ async def removee(e):
                 [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
             ],
         )
-        cmd = f'ffmpeg -i "{dl}" -map 0:v:0 -map 0:a:2 -c copy "{out}" -y'
+        cmd = f'ffmpeg -i "{dl}" -map 0:v:0 -map 0:a:0 -c copy "{out}" -y'
         #cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:360 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
