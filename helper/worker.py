@@ -79,7 +79,7 @@ async def removee(e):
                 [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
             ],
         )
-        cmd = f'ffmpeg -i "{dl}" -map 0:v:0 -map 0:a:5 -c copy "{out}" -y'
+        cmd = f'ffmpeg -i "{dl}" -map 0:v:0 -map 0:a:1 -c copy "{out}" -y'
         #cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:360 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -150,7 +150,7 @@ async def encc(e):
                 [Button.inline("STATS", data=f"stats{wah}")],
                 [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
             ],
-        )
+        ) 
         cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:480 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
