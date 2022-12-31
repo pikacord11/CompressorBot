@@ -79,7 +79,7 @@ async def removee(e):
                 [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
             ],
         )
-        cmd = f'ffmpeg -i "{dl}" -map 0:v:0 -map 0:a:1 -map 0:s:0 -c copy "{out}" -y'
+        cmd = f'ffmpeg -i "{dl}" -map 0:v:0 -map 0:a:1 -c:s copy -map 0:s? "{out}" -y'
         #cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:360 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -222,8 +222,7 @@ async def subse(e):
                 [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
             ],
         )
-        cmd = f'ffmpeg -i "{dl}" -map 0:s:0 -c copy "{out}" -y'
-        #cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:360 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
+        cmd = f'ffmpeg -i "{dl}" -c:s copy -map 0:s:0  "{out}" -y'
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -253,8 +252,7 @@ async def subse(e):
         ds = await e.client.send_file(
             e.chat_id,
             file=ok,
-            force_document=True,
-            thumb=thum)
+            force_document=True)
         await nnn.delete()
         org = int(Path(dl).stat().st_size)
         com = int(Path(out).stat().st_size)
@@ -540,7 +538,7 @@ async def customenc(e, key):
             [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
         ],
     )
-    cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:360 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
+    cmd = f'ffmpeg -i "{dl}" -preset ultrafast -c:v libx265 -crf 24 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
