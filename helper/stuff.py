@@ -76,8 +76,6 @@ async def sencc(e):
                 Button.inline("Default Compress", data=f"encc{key}"),
                 Button.inline("Remove Audio", data=f"removee{key}"),
                 Button.inline("480p", data=f"audiwe{key}"),
-            ],
-            [
                 Button.inline("360p", data=f"audiowe{key}"),
                 Button.inline("720P", data=f"subse{key}"),
                 Button.inline("Rename Compress", data=f"ccom{key}")
@@ -100,8 +98,6 @@ async def back(e):
                 Button.inline("Default Compress", data=f"encc{key}"),
                 Button.inline("Remove Audio", data=f"removee{key}"),
                 Button.inline("480P", data=f"audiwe{key}"),
-            ],
-            [
                 Button.inline("360P", data=f"audiowe{key}"),
                 Button.inline("720P", data=f"subse{key}"),
                 Button.inline("Rename Compress", data=f"ccom{key}")
