@@ -1,4 +1,4 @@
-#    This file is part of the CompressorBot distribution.
+# This file is part of the CompressorBot distribution.
 #    Copyright (c) 2021 Danish_00
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@ async def removee(e):
                 [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
             ],
         )
-        cmd = f'ffmpeg -i "{dl}" -map 0:a:0 -c copy "{out}" -y'
+        cmd = f'ffmpeg -i "{dl}" -map 0:v:0 -map 0:a:1 -c copy -c:s copy -map 0:s? "{out}" -y'
         #cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:360 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -136,7 +136,7 @@ async def removee(e):
         LOGS.info(er)
         return COUNT.remove(e.chat_id)
 
-        
+
 async def encc(e):
     try:
         es = dt.now()
@@ -151,7 +151,7 @@ async def encc(e):
                 [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
             ],
         ) 
-        cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:480 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
+        cmd = f'ffmpeg -i "{dl}" -preset ultrafast -c:v libx265 -crf 24 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
         )
@@ -276,13 +276,6 @@ async def encod(event):
                 return
         elif hasattr(event.media, "photo"):
             return
-        try:
-            oc = event.fwd_from.from_id.user_id
-            occ = (await event.client.get_me()).id
-            if oc == occ:
-                return await event.reply("`This Video File is already Compressed 😑😑.`")
-        except BaseException:
-            pass
         xxx = await event.reply("`Downloading...`")
         """ For Force Subscribe Channel"""
         # pp = []
@@ -293,15 +286,11 @@ async def encod(event):
         #        "U Must Subscribe This Channel To Use This Bot",
         #       buttons=[Button.url("JOIN CHANNEL", url="put group link")],
         #   )
-        if len(COUNT) > 4 and user.id != OWNER:
+        if len(COUNT) > 4:
             llink = (await event.client(cl(LOG))).link
             return await xxx.edit(
                 "Overload Already 5 Process Running",
                 buttons=[Button.url("Working Status", url=llink)],
-            )
-        if user.id in COUNT and user.id != OWNER:
-            return await xxx.edit(
-                "Already Your 1 Request Processing\nKindly Wait For it to Finish"
             )
         COUNT.append(user.id)
         s = dt.now()
@@ -397,7 +386,7 @@ async def customenc(e, key):
             [Button.inline("CANCEL PROCESS", data=f"skip{wah}")],
         ],
     )
-    cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=640:360 -c:v libx265 -crf 28 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
+    cmd = f'ffmpeg -i "{dl}" -preset ultrafast -vf scale=700:400 -c:v libx265 -crf 24 -map 0:v -c:a libopus -ab 64k -map 0:a -c:s copy -map 0:s? "{out}" -y'
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )

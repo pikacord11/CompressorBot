@@ -72,10 +72,10 @@ async def sencc(e):
     await e.edit(
         "Choose Mode",
         buttons=[
-            [
+           [
                 Button.inline("Default Compress", data=f"encc{key}"),
-                Button.inline("Custom Encode", data=f"removee{key}"),
-                Button.inline("Custom Compress", data=f"ccom{key}")
+                Button.inline("Remove Audio", data=f"removee{key}"),
+                Button.inline("Rename Compress", data=f"ccom{key}")
             ],
             [Button.inline("Back", data=f"back{key}")],
         ],
@@ -91,7 +91,11 @@ async def back(e):
                 Button.inline("GENERATE SAMPLE", data=f"gsmpl{key}"),
                 Button.inline("SCREENSHOTS", data=f"sshot{key}"),
             ],
-            [Button.inline("COMPRESS", data=f"sencc{key}")],
+            [
+                Button.inline("Default Compress", data=f"encc{key}"),
+                Button.inline("Remove Audio", data=f"removee{key}"),
+                Button.inline("Rename Compress", data=f"ccom{key}")
+            ],
         ],
     )
 
