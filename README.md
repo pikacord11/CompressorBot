@@ -14,4 +14,4 @@
 
 ### Fork Repo Then click on below button of ur fork repo.
 [![Deploy](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/pikacord11/CompressorBot)
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
