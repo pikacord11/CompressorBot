@@ -276,14 +276,6 @@ async def encod(event):
                 return
         elif hasattr(event.media, "photo"):
             return
-        try:
-            oc = event.fwd_from.from_id.user_id
-            occ = (await event.client.get_me()).id
-            if oc == occ:
-                return await event.reply("`This Video File is already Compressed 😑😑.`")
-        except BaseException:
-            pass
-        xxx = await event.reply("`Downloading...`")
         """ For Force Subscribe Channel"""
         # pp = []
         # async for x in event.client.iter_participants("put group username"):
@@ -293,15 +285,11 @@ async def encod(event):
         #        "U Must Subscribe This Channel To Use This Bot",
         #       buttons=[Button.url("JOIN CHANNEL", url="put group link")],
         #   )
-        if len(COUNT) > 4 and user.id != OWNER:
+        if len(COUNT) > 4:
             llink = (await event.client(cl(LOG))).link
             return await xxx.edit(
                 "Overload Already 5 Process Running",
                 buttons=[Button.url("Working Status", url=llink)],
-            )
-        if user.id in COUNT and user.id != OWNER:
-            return await xxx.edit(
-                "Already Your 1 Request Processing\nKindly Wait For it to Finish"
             )
         COUNT.append(user.id)
         s = dt.now()
