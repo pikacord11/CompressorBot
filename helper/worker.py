@@ -276,6 +276,9 @@ async def encod(event):
                 return
         elif hasattr(event.media, "photo"):
             return
+        except BaseException:
+            pass
+        xxx = await event.reply("`Downloading...`")
         """ For Force Subscribe Channel"""
         # pp = []
         # async for x in event.client.iter_participants("put group username"):
